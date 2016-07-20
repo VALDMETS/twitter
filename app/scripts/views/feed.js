@@ -2,41 +2,33 @@ import $ from 'jquery';
 import Bb from 'backbone';
 
 import router from '../router';
-import user from '../models/session';
+// import session from '../models/session';
 import settings from '../settings';
 import bumblList from '../collections/postcollection';
-import bumblView from './bumbl';
+import BumblView from './bumbl';
+import userList from '../collections/usercollection';
 
 const Feed = Bb.View.extend({
+  initialize: function () {
+    bumblList.on('update', () => {
+      this.render();
+    });
+    bumblList.fetch();
+    // userList.fetch({
+    //   success: function () {
+    //     console.log(userList);
+    //   }
+    // });
+  },
   tagName: 'div',
   className: 'feedbox',
-  // attributes: {
-  //   'data-id': pull from model??
-  // },
   render: function() {
-    // this.$el.empty();
-    bumblList.fetch({
-      success: () => {
-        // console.log(bumblList.models);
-        bumblList.each((bumbl) => {
-          console.log(bumbl);
-          this.$el.append(bumblView.render(bumbl).$el);
-          // this.$el.append('<div>doesthispleasework</div>');
+      this.$el.html('');
+      bumblList.each((bumbl) => {
+        let bumblView = new BumblView();
+        this.$el.prepend(bumblView.render(bumbl).$el);
         });
-
-      }
-    });
-    // console.log(bumblList);
     return this;
   }
-
-  // this will pull collection of posts and build a div for each one
-  // render: function () {
-  //   this.$el.append(this.template);
-  //   return this;
-  // },
-
 });
-
-let feed = new Feed();
-export default feed;
+export default Feed;

@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Bb from 'backbone';
 
 import router from '../router';
-import user from '../models/session';
+import session from '../models/session';
 
 const SignupPage = Bb.View.extend({
   tagName: 'form',
@@ -30,14 +30,13 @@ const SignupPage = Bb.View.extend({
     let username = $('#signupname').val();
     let password = $('#signuppassword').val();
     console.log(user);
-    user.save({username: username, password: password, signupDate: new Date()}, {
+    session.save({username: username, password: password, signupDate: new Date()}, {
       success: function (user, resp) {
-        user.unset('password');
-        user.set({
+        session.unset('password');
+        session.set({
           authtoken: resp._kmd.authtoken
         });
         router.navigate('feed', {trigger: true});
-        console.log(user);
       },
       error: function () {
         console.log('Someone already took that name! Or something is wrong with the server. Try again');

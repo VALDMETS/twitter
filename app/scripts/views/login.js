@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Bb from 'backbone';
 
 import router from '../router';
-import user from '../models/session';
+import session from '../models/session';
 import settings from '../settings';
 
 const LoginPage = Bb.View.extend({
@@ -27,16 +27,15 @@ const LoginPage = Bb.View.extend({
     evt.preventDefault();
     let username = $('#loginname').val();
     let password = $('#loginpassword').val();
-    user.save({username: username, password: password}, {
+    session.save({username: username, password: password}, {
       url: `https://baas.kinvey.com/user/${settings.appKey}` + '/login',
       success: function (user, resp) {
-        user.unset('password');
-        user.set({
+        session.unset('password');
+        session.set({
           username: username,
           authtoken: resp._kmd.authtoken
         });
         router.navigate('feed', {trigger: true});
-        console.log(user);
       },
       error: function () {
         console.log('Whoops! Looks like you need to sign up.');

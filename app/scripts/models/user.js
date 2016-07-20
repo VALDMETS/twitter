@@ -3,7 +3,7 @@ import Bb from 'backbone';
 
 import settings from '../settings';
 
-const Session = Bb.Model.extend({
+const User = Bb.Model.extend({
   defaults: {
     username: '',
     authtoken: '',
@@ -13,6 +13,4 @@ const Session = Bb.Model.extend({
 
 });
 
-let session = new Session();
-
-export default session;
+export default User;
