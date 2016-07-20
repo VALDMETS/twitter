@@ -5,6 +5,7 @@ import router from '../router';
 import user from '../models/session';
 import settings from '../settings';
 import Post from '../models/post';
+import bumblList from '../collections/postcollection';
 
 const PostForm = Bb.View.extend({
   tagName: 'form',
@@ -42,6 +43,7 @@ const PostForm = Bb.View.extend({
 
       contentType: 'application/json',
       success: function() {
+        bumblList.add(post);
         console.log('got em coach');
       },
       error: function() {

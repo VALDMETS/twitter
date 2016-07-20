@@ -5,7 +5,7 @@ import settings from '../settings';
 import session from './session';
 
 const Post = Bb.Model.extend({
-  urlRoot: `baas.kinvey.com/appdata/${settings.appKey}/bumbls`,
+  urlRoot: `https://baas.kinvey.com/appdata/${settings.appKey}/bumbls`,
   defaults: {
     timestamp: new Date(),
     body: '',
