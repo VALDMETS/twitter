@@ -32,6 +32,7 @@ const LoginPage = Bb.View.extend({
       success: function (user, resp) {
         user.unset('password');
         user.set({
+          username: username,
           authtoken: resp._kmd.authtoken
         });
         router.navigate('feed', {trigger: true});

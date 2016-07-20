@@ -3,6 +3,8 @@ import Bb from 'backbone';
 
 import loginPage from './views/login';
 import signupPage from './views/signup';
+import postForm from './views/post';
+import feed from './views/feed';
 
 const Router = Bb.Router.extend({
   routes: {
@@ -21,6 +23,8 @@ const Router = Bb.Router.extend({
   },
   feedFunction: function() {
     console.log('feed me');
+    $('.formcontainer').empty().append(postForm.render().$el);
+    $('.feedcontainer').empty().append(feed.render().$el);
   }
 });
 

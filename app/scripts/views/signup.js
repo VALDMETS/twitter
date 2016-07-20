@@ -38,6 +38,9 @@ const SignupPage = Bb.View.extend({
         });
         router.navigate('feed', {trigger: true});
         console.log(user);
+      },
+      error: function () {
+        console.log('Someone already took that name! Or something is wrong with the server. Try again');
       }
     });
   },
