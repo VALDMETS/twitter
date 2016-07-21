@@ -13,7 +13,12 @@ const Feed = Bb.View.extend({
     bumblList.on('update', () => {
       this.render();
     });
-    bumblList.fetch();
+    bumblList.fetch({
+      error: function () {
+        router.navigate('login', {trigger: true});
+      }
+    });
+
     // userList.fetch({
     //   success: function () {
     //     console.log(userList);

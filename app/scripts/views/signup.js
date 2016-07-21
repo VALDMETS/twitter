@@ -29,7 +29,6 @@ const SignupPage = Bb.View.extend({
     evt.preventDefault();
     let username = $('#signupname').val();
     let password = $('#signuppassword').val();
-    console.log(user);
     session.save({username: username, password: password, signupDate: new Date()}, {
       success: function (user, resp) {
         session.unset('password');

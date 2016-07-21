@@ -11,7 +11,8 @@ const Post = Bb.Model.extend({
     body: '',
     poster: '',
     likes: 0
-  }
+  },
+  idAttribute: '_id'
 });
 
 

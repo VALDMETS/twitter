@@ -42,8 +42,7 @@ const PostForm = Bb.View.extend({
       success: function() {
         bumblList.add(post);
         $('textarea').val('');
-        console.log(bumblList);
-        console.log('got em coach');
+
       },
       error: function() {
         console.log('ugh');
